@@ -21,7 +21,18 @@ public class BookStatsTest {
     }
 
     @Test
-    public void countingWordsReturnsNumberOfWordsInBook() {
-        assertEquals(0, 1); // Replace this line with the actual test code...
-    }
-}
+ public void countingWordsReturnsNumberOfWordsInBook() {
+
+    // Given
+    Book book = new Book("someISBN", "this is the content");
+
+    // When
+    double wordCount = BookStats.countWords(book);
+
+    // Then
+    assertEquals(4, wordCount);
+
+ }
+
+
+ }

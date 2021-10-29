@@ -2,6 +2,9 @@ package com.redhat.training;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import java.beans.Transient;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 
@@ -23,5 +26,30 @@ public class LibraryWithMockedInventoryTest {
         library = new Library(inventory);
     }
 
-    // Add tests here...
+@Transient
+public void checkingOutDoesNotWithdrawFromInventoryWhenBookIsUnavailable()
+
+throws BookNotAvailableException {
+
+    // Given
+
+    when(inventory.isBookAvailable("book1")).thenReturn(false);
+
+    // When
+
+    try {
+
+        library.checkOut("student1", "book1");
+
+    } catch(BookNotAvailableException e) {}
+
+    // Then
+
+    verify(inventory, times(0)).withdraw("book1");
+
 }
+
+
+
+}
+    
